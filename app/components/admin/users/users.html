@@ -1,0 +1,57 @@
+<div ng-controller="AdminUsersCtrl" ng-init="loadData();">
+    <div class="well">
+
+        <div class="row">
+            <div class="col-sm-12">
+
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <th>Lastname</th>
+                        <th>Firstname</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                    </tr>
+                    <tr ng-repeat="user in users">
+                        <td>{{user.id}}</td>
+                        <td>{{user.lastname}}</td>
+                        <td>{{user.firstname}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.phone}}</td>
+                    </tr>
+
+                </table>
+
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                    <span class="glyphicon glyphicon-plus-sign" /> Create User
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">User</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-sm-4">Lastname</div>
+                    <div class="col-sm-8">TODO</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

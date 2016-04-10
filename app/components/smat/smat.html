@@ -1,0 +1,157 @@
+<div ng-controller="SmatCtrl" ng-init="loadData(); addLine();">
+  <div class="well">
+
+    <div class="row">
+      <div class="col-sm-6">
+      </div>
+      <div class="col-sm-6">
+        <button type="button" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-calendar" /></button>
+        <button type="button" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-print" /></button>
+        <button type="button" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-save-file" /></button>
+        <button type="button" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-signal" /></button>
+        <button type="button" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-floppy-disk" /></button>
+        <button type="button" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-envelope" aria-hidden="true"/></button>
+      </div>
+    </div>
+
+    </br>
+
+      <form class="form-horizontal">
+        <div class="row">
+          <div class="col-sm-4">
+
+            <!-- Date -->
+            <div class="form-group">
+              <label class="col-sm-4 control-label required">Date</label>
+              <div class="col-sm-8">
+                <input type="date" class="form-control" ng-model="date" />
+              </div>
+            </div>
+
+            <!-- SMATer -->
+            <div class="form-group">
+              <label class="col-sm-4 control-label required">SMATer</label>
+              <div class="col-sm-8">
+                <select class="form-control" ng-model="smaterId">
+                  <option ng-repeat="smater in listSmaters" id="{{smater.id}}">{{smater.label}}</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- co-SMATer -->
+            <div class="form-group">
+              <label class="col-sm-4 control-label required">co-SMATer</label>
+              <div class="col-sm-8">
+                <select class="form-control" ng-model="coSmaterId">
+                  <option ng-repeat="smater in listCoSmaters" id="{{smater.id}}">{{smater.label}}</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- SMAT receiver -->
+            <div class="form-group">
+              <label class="col-sm-4 control-label required">SMAT receiver</label>
+              <div class="col-sm-8">
+                <select class="form-control" ng-model="smaterReceiverId">
+                  <option ng-repeat="smater in listSmatReceivers" id="{{smater.id}}">{{smater.label}}</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+
+
+          <div class="col-sm-8">
+
+            <!-- Department/Shop/Shift -->
+            <div class="form-group">
+              <label class="col-sm-4 control-label required">Department/Shop/Shift</label>
+              <div class="col-sm-6">
+                <select class="form-control" ng-model="departmentId">
+                  <option ng-repeat="department in listDepartment" id="{{department.id}}">{{department.label}}</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Workstation -->
+            <div class="form-group">
+              <label class="col-sm-4 control-label required">Workstation</label>
+              <div class="col-sm-6">
+                <select class="form-control" ng-model="workstationId">
+                  <option ng-repeat="workstation in listWorkStation" id="{{workstation.id}}">{{workstation.label}}</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Observed Activity -->
+            <div class="form-group">
+              <label class="col-sm-4 control-label required">Observed Activity</label>
+              <div class="col-sm-8">
+                <textarea class="form-control" ng-model="observedActivity" >
+                </textarea>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-xs-12">
+
+
+
+            <table class="table">
+              <tbody>
+              <tr>
+                <th>&nbsp;</th>
+                <th>Type</th>
+                <th>Category</th>
+                <th>Obs. Description</th>
+                <th>Disc. Answer</th>
+                <th>Description</th>
+                <th>Actions</th>
+                <th>Resp. person</th>
+                <th>Deadline</th>
+              </tr>
+              <tr ng-repeat="line in lines">
+                <td><a ng-click="removeLine($line.id);"><span class="glyphicon glyphicon-minus-sign"/></a></td>
+                <td>
+                  <select class="form-control" ng-model="line.type">
+                    <option ng-repeat="type in listType" id="{{type.id}}">{{type.label}}</option>
+                  </select>
+                </td>
+                <td><input type="text" class="form-control" value="{{line.category}}" ></td>
+                <td><input type="text" class="form-control" value="{{line.obsDesc}}" ></td>
+                <td><input type="text" class="form-control" value="{{line.discAns}}" ></td>
+                <td><input type="text" class="form-control" value="{{line.description}}" ></td>
+                <td>
+                  <select class="form-control" ng-model="line.action">
+                    <option ng-repeat="action in listAction" id="{{action.id}}">{{action.label}}</option>
+                  </select>
+                </td>
+                <td>
+                  <select class="form-control" ng-model="line.respPerson">
+                    <option ng-repeat="user in listSmaters" id="{{user.id}}">{{user.label}}</option>
+                  </select>
+                </td>
+                <td>
+                  <select class="form-control" ng-model="line.deadLine">
+                    <option ng-repeat="deadLine in listDeadline" id="{{deadLine.id}}">{{deadLine.label}}</option>
+                  </select>
+                </td>
+              </tr>
+              </tbody>
+
+            </table>
+
+          </div>
+
+
+        </div>
+      </form>
+
+
+    <button type="button" class="btn btn-primary" ng-click="addLine();">
+      <span class="glyphicon glyphicon-plus-sign" /> Add Line
+    </button>
+
+  </div>
+</div>
